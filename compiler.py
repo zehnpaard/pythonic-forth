@@ -79,8 +79,8 @@ primitives = {
         'CR': run_cr,
         'IF': run_if,
         'ELSE': run_else,
+        'THEN': run_then,
         'DO': run_do,
         'LOOP': run_loop,
-        'THEN': run_then,
         'I': run_i,
         }
