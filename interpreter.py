@@ -4,11 +4,13 @@ def init_state():
             'pos': 0,
             'stack': [],
             'branch': [],
+            'vars': [],
             'end': False,
             }
 
-def interpret(state, codes):
+def interpret(state, codes, var_count):
     state['codes'] = codes
+    state['vars'].extend([0] * (var_count - len(state['vars'])))
     state['end'] = False
 
     while not state['end']:

@@ -4,6 +4,7 @@ def init_state():
             'pos': 0,
             'codes': [],
             'branch': [],
+            'vars': {},
             'end': False
             }
 
@@ -15,7 +16,7 @@ def compile(state, tokens):
 
     while not state['end']:
         run(state)
-    return state['codes']
+    return state['codes'], len(state['vars'])
 
 def run(state):
     if state['pos'] == len(state['tokens']):
@@ -28,6 +29,8 @@ def run(state):
         state['codes'].extend(('PUSH', int(token)))
     elif token in primitives:
         primitives[token](state)
+    elif token in state['vars']:
+        state['codes'].extend(('PUSH', state['vars'][token]))
     state['pos'] += 1
 
 def is_int(s):
@@ -72,6 +75,10 @@ def run_loop(state):
 def run_i(state):
     state['codes'].append('I')
 
+def run_variable(state):
+    var_name = state['tokens'][state['pos']+1]
+    state['vars'][var_name] = len(state['vars'])
+    state['pos'] += 1
 
 primitives = {
         '+': run_plus,
@@ -83,4 +90,5 @@ primitives = {
         'DO': run_do,
         'LOOP': run_loop,
         'I': run_i,
+        'VARIABLE': run_variable,
         }

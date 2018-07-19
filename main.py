@@ -26,8 +26,8 @@ def run_repl():
         if s == 'QUIT': break
 
         tokens = tokenizer.tokenize(s)
-        codes = compiler.compile(compiler_state, tokens)
-        interpreter.interpret(interpreter_state, codes)
+        codes, var_count = compiler.compile(compiler_state, tokens)
+        interpreter.interpret(interpreter_state, codes, var_count)
 
 if __name__ == '__main__':
     if len(sys.argv) == 2:
