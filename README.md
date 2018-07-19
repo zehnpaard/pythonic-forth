@@ -8,11 +8,11 @@ Currently implements:
 * Adding two integers on the stack
 * Printing integers from stack
 * Carriage return
+* Interactive REPL
 
 TODO:
 
 * Variable definition, get/set
 * User-defined Word
-* Interactive REPL
 * IF-ELSE-THEN
 * DO-LOOP
