@@ -7,10 +7,10 @@ Currently implements:
 * Pushing integers to stack
 * Adding two integers on the stack
 * Printing integers from stack
+* Carriage return
 
 TODO:
 
-* Carriage return
 * Variable definition, get/set
 * User-defined Word
 * Interactive REPL
