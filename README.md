@@ -21,5 +21,8 @@ TODO:
 
 * Variable definition, get/set
 * User-defined Word
+* Multi-line REPL input
 * Printing strings
 * Error handling
+* Arithmetic operators
+* Stack manipulation operators
