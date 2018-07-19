@@ -81,5 +81,6 @@ primitives = {
         'ELSE': run_else,
         'DO': run_do,
         'LOOP': run_loop,
+        'THEN': run_then,
         'I': run_i,
         }

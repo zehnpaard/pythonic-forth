@@ -1,0 +1,4 @@
+5 1 IF 2 ELSE 3 THEN + . CR
+5 0 IF 2 ELSE 3 THEN + . CR
+5 1 IF 2 + THEN . CR
+5 0 IF 2 + THEN . CR
