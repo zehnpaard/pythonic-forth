@@ -80,6 +80,12 @@ def run_variable(state):
     state['vars'][var_name] = len(state['vars'])
     state['pos'] += 1
 
+def run_get(state):
+    state['codes'].append('@')
+
+def run_set(state):
+    state['codes'].append('!')
+
 primitives = {
         '+': run_plus,
         '.': run_print,
@@ -91,4 +97,6 @@ primitives = {
         'LOOP': run_loop,
         'I': run_i,
         'VARIABLE': run_variable,
+        '@': run_get,
+        '!': run_set,
         }

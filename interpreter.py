@@ -67,6 +67,16 @@ def run_i(state):
     state['stack'].append(state['branch'][-1])
     state['pos'] += 1
 
+def run_get(state):
+    a = state['stack'].pop()
+    state['stack'].append(state['vars'][a])
+    state['pos'] += 1
+
+def run_set(state):
+    a, b = state['stack'].pop(), state['stack'].pop()
+    state['vars'][a] = b
+    state['pos'] += 1
+
 def run_end(state):
     state['end'] = True
 
@@ -81,4 +91,6 @@ commands = {
         'DO': run_do,
         'LOOP': run_loop,
         'I': run_i,
+        '@': run_get,
+        '!': run_set,
         }
