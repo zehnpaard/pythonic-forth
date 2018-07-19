@@ -1,0 +1,1 @@
+5 0 DO I 1 + . LOOP CR
