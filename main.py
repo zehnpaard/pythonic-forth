@@ -10,4 +10,5 @@ if __name__ == '__main__':
     compiler_state = compiler.init_state()
     codes = compiler.compile(compiler_state, tokens)
 
-    interpreter.interpret(codes)
+    interpreter_state = interpreter.init_state()
+    interpreter.interpret(interpreter_state, codes)
