@@ -7,7 +7,11 @@ def init_state():
             }
 
 def compile(state, tokens):
-    state['tokens'] = tokens
+    state['tokens'].extend(tokens)
+    if state['codes']:
+        state['codes'].pop()
+    state['end'] = False
+
     while not state['end']:
         run(state)
     return state['codes']
