@@ -15,9 +15,14 @@ Currently implements:
 * Carriage return
 * Interactive REPL
 * IF-ELSE-THEN
+* DO-LOOP
 
 TODO:
 
 * Variable definition, get/set
 * User-defined Word
-* DO-LOOP
+* Multi-line REPL input
+* Printing strings
+* Error handling
+* Arithmetic operators
+* Stack manipulation operators

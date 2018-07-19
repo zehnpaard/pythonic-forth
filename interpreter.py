@@ -3,6 +3,7 @@ def init_state():
             'codes': [],
             'pos': 0,
             'stack': [],
+            'branch': [],
             'end': False,
             }
 
@@ -46,6 +47,24 @@ def run_if(state):
 def run_else(state):
     state['pos'] = state['codes'][state['pos']+1]
 
+def run_do(state):
+    a, b = state['stack'].pop(), state['stack'].pop()
+    state['branch'].extend((b, a))
+    state['pos'] += 1
+
+def run_loop(state):
+    a, b = state['branch'].pop(), state['branch'].pop()
+    a += 1
+    if a < b:
+        state['branch'].extend((b, a))
+        state['pos'] = state['codes'][state['pos']+1]
+    else:
+        state['pos'] += 2
+
+def run_i(state):
+    state['stack'].append(state['branch'][-1])
+    state['pos'] += 1
+
 def run_end(state):
     state['end'] = True
 
@@ -57,4 +76,7 @@ commands = {
         'IF': run_if,
         'ELSE': run_else,
         'END': run_end,
+        'DO': run_do,
+        'LOOP': run_loop,
+        'I': run_i,
         }
