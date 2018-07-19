@@ -14,10 +14,10 @@ Currently implements:
 * Printing integers from stack
 * Carriage return
 * Interactive REPL
+* IF-ELSE-THEN
 
 TODO:
 
 * Variable definition, get/set
 * User-defined Word
-* IF-ELSE-THEN
 * DO-LOOP
