@@ -61,10 +61,21 @@ def run_then(state):
     else_pos = state['branch'].pop()
     state['codes'][else_pos] = len(state['codes'])
 
+def run_do(state):
+    state['branch'].append(len(state['codes']) + 1)
+    state['codes'].append('DO')
+
+def run_loop(state):
+    do_pos = state['branch'].pop()
+    state['codes'].extend(('LOOP', do_pos))
+
+
 primitives = {
         '+': run_plus,
         '.': run_print,
         'CR': run_cr,
         'IF': run_if,
         'ELSE': run_else,
+        'DO': run_do,
+        'LOOP': run_loop,
         }
