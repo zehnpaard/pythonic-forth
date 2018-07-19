@@ -12,5 +12,8 @@ def interpret(code_list):
             stack.append(a+b)
             counter += 1
         elif code_list[counter] == 'PRINT':
-            print(stack.pop())
+            print(stack.pop(), end='')
+            counter += 1
+        elif code_list[counter] == 'CR':
+            print()
             counter += 1

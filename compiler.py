@@ -8,7 +8,7 @@ def compile(tokens):
 def compile_token(token):
     if is_int(token):
         return ('PUSH', int(token))
-    d = {'+':'PLUS', '.':'PRINT'}
+    d = {'+':'PLUS', '.':'PRINT', 'CR':'CR'}
     return (d[token], )
 
 def is_int(s):
