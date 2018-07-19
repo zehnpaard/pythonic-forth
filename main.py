@@ -6,5 +6,8 @@ if __name__ == '__main__':
     with open('samples/sample1.forth') as f:
         s = ' '.join(f)
     tokens = tokenizer.tokenize(s)
-    code_list = compiler.compile(tokens)
-    interpreter.interpret(code_list)
+
+    compiler_state = compiler.init_state()
+    codes = compiler.compile(compiler_state, tokens)
+
+    interpreter.interpret(codes)
