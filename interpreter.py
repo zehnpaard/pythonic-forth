@@ -36,6 +36,16 @@ def run_cr(state):
     print()
     state['pos'] += 1
 
+def run_if(state):
+    a = state['stack'].pop()
+    if a == 0:
+        state['pos'] = state['codes'][state['pos']+1]
+    else:
+        state['pos'] += 2
+
+def run_else(state):
+    state['pos'] = state['codes'][state['pos']+1]
+
 def run_end(state):
     state['end'] = True
 
@@ -44,5 +54,7 @@ commands = {
         '+': run_plus,
         '.': run_print,
         'CR': run_cr,
+        'IF': run_if,
+        'ELSE': run_else,
         'END': run_end,
         }

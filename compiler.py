@@ -3,6 +3,7 @@ def init_state():
             'tokens': [],
             'pos': 0,
             'codes': [],
+            'branch': [],
             'end': False
             }
 
@@ -45,8 +46,25 @@ def run_print(state):
 def run_cr(state):
     state['codes'].append('CR')
 
+def run_if(state):
+    state['branch'].append(len(state['codes']) + 1)
+    state['codes'].extend(('IF', None))
+
+def run_else(state):
+    if_pos = state['branch'].pop()
+    state['codes'][if_pos] = len(state['codes']) + 2
+
+    state['branch'].append(len(state['codes']) + 1)
+    state['codes'].extend(('ELSE', None))
+
+def run_then(state):
+    else_pos = state['branch'].pop()
+    state['codes'][else_pos] = len(state['codes'])
+
 primitives = {
         '+': run_plus,
         '.': run_print,
         'CR': run_cr,
+        'IF': run_if,
+        'ELSE': run_else,
         }
