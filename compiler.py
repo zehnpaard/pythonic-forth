@@ -69,6 +69,9 @@ def run_loop(state):
     do_pos = state['branch'].pop()
     state['codes'].extend(('LOOP', do_pos))
 
+def run_i(state):
+    state['codes'].append('I')
+
 
 primitives = {
         '+': run_plus,
@@ -78,4 +81,5 @@ primitives = {
         'ELSE': run_else,
         'DO': run_do,
         'LOOP': run_loop,
+        'I': run_i,
         }

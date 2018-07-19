@@ -61,7 +61,9 @@ def run_loop(state):
     else:
         state['pos'] += 2
 
-
+def run_i(state):
+    state['stack'].append(state['branch'][-1])
+    state['pos'] += 1
 
 def run_end(state):
     state['end'] = True
@@ -76,4 +78,5 @@ commands = {
         'END': run_end,
         'DO': run_do,
         'LOOP': run_loop,
+        'I': run_i,
         }
