@@ -10,10 +10,10 @@ def run_file(filename):
     tokens = tokenizer.tokenize(s)
 
     compiler_state = compiler.init_state()
-    codes = compiler.compile(compiler_state, tokens)
+    codes, var_count = compiler.compile(compiler_state, tokens)
 
     interpreter_state = interpreter.init_state()
-    interpreter.interpret(interpreter_state, codes)
+    interpreter.interpret(interpreter_state, codes, var_count)
 
 def run_repl():
     compiler_state = compiler.init_state()
