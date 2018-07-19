@@ -2,6 +2,11 @@
 
 Based on http://moi2.sakura.ne.jp/fswiki/wiki.cgi?page=Forth%A4%F2%BA%EE%A4%C3%A4%C6%A4%DF%A4%EB
 
+Usage:
+
+- `python main.py` to activate REPL
+- `python main.py samples/sample1.forth` to run single source file
+
 Currently implements:
 
 * Pushing integers to stack
