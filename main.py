@@ -1,9 +1,11 @@
+import sys
+
 import tokenizer
 import compiler
 import interpreter
 
-if __name__ == '__main__':
-    with open('samples/sample1.forth') as f:
+def run_file(filename):
+    with open(filename) as f:
         s = ' '.join(f)
     tokens = tokenizer.tokenize(s)
 
@@ -12,3 +14,7 @@ if __name__ == '__main__':
 
     interpreter_state = interpreter.init_state()
     interpreter.interpret(interpreter_state, codes)
+
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        run_file(sys.argv[1])
