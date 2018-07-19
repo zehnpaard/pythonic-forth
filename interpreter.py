@@ -8,6 +8,8 @@ def init_state():
 
 def interpret(state, codes):
     state['codes'] = codes
+    state['end'] = False
+
     while not state['end']:
         run(state)
 
