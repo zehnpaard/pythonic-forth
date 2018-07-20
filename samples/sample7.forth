@@ -1,0 +1,4 @@
+: ADD5 5 + ;
+: IF-ADD5 IF ADD5 THEN ;
+5 1 IF-ADD5 . CR
+5 0 IF-ADD5 . CR
