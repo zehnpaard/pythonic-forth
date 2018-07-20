@@ -1,0 +1,3 @@
+: ADD1 1 + ;
+5 ADD1 . CR
+5 ADD1 ADD1 . CR

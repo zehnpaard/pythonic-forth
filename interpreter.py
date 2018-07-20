@@ -8,9 +8,10 @@ def init_state():
             'end': False,
             }
 
-def interpret(state, codes, var_count):
+def interpret(state, codes, var_count, start):
     state['codes'] = codes
     state['vars'].extend([0] * (var_count - len(state['vars'])))
+    state['pos'] = max(start, state['pos'])
     state['end'] = False
 
     while not state['end']:
@@ -77,6 +78,13 @@ def run_set(state):
     state['vars'][a] = b
     state['pos'] += 1
 
+def run_call(state):
+    state['branch'].append(state['pos']+2)
+    state['pos'] = state['codes'][state['pos']+1]
+
+def run_ret(state):
+    state['pos'] = state['branch'].pop()
+
 def run_end(state):
     state['end'] = True
 
@@ -87,10 +95,12 @@ commands = {
         'CR': run_cr,
         'IF': run_if,
         'ELSE': run_else,
-        'END': run_end,
         'DO': run_do,
         'LOOP': run_loop,
         'I': run_i,
         '@': run_get,
         '!': run_set,
+        'CALL': run_call,
+        ';': run_ret,
+        'END': run_end,
         }
