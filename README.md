@@ -17,10 +17,10 @@ Currently implements:
 * IF-ELSE-THEN
 * DO-LOOP
 * Variable definition, get/set
+* User-defined Word
 
 TODO:
 
-* User-defined Word
 * Multi-line REPL input
 * Printing strings
 * Error handling
