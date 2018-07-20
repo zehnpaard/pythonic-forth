@@ -40,15 +40,6 @@ def is_int(s):
         return False
     return True
 
-def run_plus(state):
-    state['codes'].append('+')
-
-def run_print(state):
-    state['codes'].append('.')
-
-def run_cr(state):
-    state['codes'].append('CR')
-
 def run_if(state):
     state['branch'].append(len(state['codes']) + 1)
     state['codes'].extend(('IF', None))
@@ -72,31 +63,22 @@ def run_loop(state):
     do_pos = state['branch'].pop()
     state['codes'].extend(('LOOP', do_pos))
 
-def run_i(state):
-    state['codes'].append('I')
-
 def run_variable(state):
     var_name = state['tokens'][state['pos']+1]
     state['vars'][var_name] = len(state['vars'])
     state['pos'] += 1
 
-def run_get(state):
-    state['codes'].append('@')
-
-def run_set(state):
-    state['codes'].append('!')
-
 primitives = {
-        '+': run_plus,
-        '.': run_print,
-        'CR': run_cr,
+        '+': lambda state: state['codes'].append('+'),
+        '.': lambda state: state['codes'].append('.'),
+        'CR': lambda state: state['codes'].append('CR'),
         'IF': run_if,
         'ELSE': run_else,
         'THEN': run_then,
         'DO': run_do,
         'LOOP': run_loop,
-        'I': run_i,
+        'I': lambda state: state['codes'].append('I'),
         'VARIABLE': run_variable,
-        '@': run_get,
-        '!': run_set,
+        '@': lambda state: state['codes'].append('@'),
+        '!': lambda state: state['codes'].append('!'),
         }
