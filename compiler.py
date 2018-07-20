@@ -5,6 +5,8 @@ def init_state():
             'codes': [],
             'branch': [],
             'vars': {},
+            'words': {},
+            'last_ret': 0,
             'end': False
             }
 
@@ -16,7 +18,7 @@ def compile(state, tokens):
 
     while not state['end']:
         run(state)
-    return state['codes'], len(state['vars'])
+    return state['codes'], len(state['vars']), state['last_ret']
 
 def run(state):
     if state['pos'] == len(state['tokens']):
@@ -31,6 +33,8 @@ def run(state):
         primitives[token](state)
     elif token in state['vars']:
         state['codes'].extend(('PUSH', state['vars'][token]))
+    elif token in state['words']:
+        state['codes'].extend(('CALL', state['words'][token]))
     state['pos'] += 1
 
 def is_int(s):
@@ -68,6 +72,15 @@ def run_variable(state):
     state['vars'][var_name] = len(state['vars'])
     state['pos'] += 1
 
+def run_def(state):
+    word = state['tokens'][state['pos']+1]
+    state['words'][word] = len(state['codes'])
+    state['pos'] += 1
+
+def run_ret(state):
+    state['codes'].append(';')
+    state['last_ret'] = len(state['codes']) 
+
 primitives = {
         '+': lambda state: state['codes'].append('+'),
         '.': lambda state: state['codes'].append('.'),
@@ -81,4 +94,6 @@ primitives = {
         'VARIABLE': run_variable,
         '@': lambda state: state['codes'].append('@'),
         '!': lambda state: state['codes'].append('!'),
+        ':': run_def,
+        ';': run_ret,
         }
